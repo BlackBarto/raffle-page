@@ -1,0 +1,19 @@
+{
+  "name": "raffle_page",
+  "version": "1.0.0",
+  "description": "This is a project of a page of a raffle that allows you to choose and enter a number in the raffle and it must be equal to none",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.5"
+  }
+}
