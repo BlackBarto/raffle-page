@@ -1,27 +1,24 @@
-export const numbersPlace = document.getElementById("numbers-place")
+const numbersPlace = document.getElementById("numbers-place")
 
-const insertNumbers = async () => {
-    const res = await fetch("/api/getNumbers")
-    const json = await res.json()
-    const numbersFragment = new DocumentFragment()
-    for (let i = 1; i <= 200; i++) {
-        const availableState = json.includes(i) ? "Apartado" : "Disponible"
-        const classes = json.includes(i) ? ["numbers__number", "noAvailble"] : ["numbers__number"]
-        const number = document.createElement("article")
-        number.classList.add(...classes)
+export const insertNumbers = ({number, isValid}) => {
+    const numerElement = document.createElement("article")
+    numerElement.classList.add("numbers__number")
+    numerElement.innerHTML = `
+    <div class="numbers__container-info">
+        <h3 class="numbers__h3">Number: ${number}</h3>
+        <p class="numbers__p">${isValid ? "Available" : "Reserved"}</p>
+    </div>
+    <button class="numbers__btn">Apartar</button>
+    `
 
-        number.innerHTML = `
-        <div class="numbers__container-info">
-            <h3 class="numbers__h3">Numero: ${i}</h3>
-            <p class="numbers__p">${availableState}</p>
-        </div>
-        <button class="numbers__btn">Apartar</button>
-        `
-
-        numbersFragment.appendChild(number)
-    }
-
-    numbersPlace.appendChild(numbersFragment)
+    numbersPlace.appendChild(numerElement)
 }
 
-export default insertNumbers
+export const insertDefault = numbers => {
+    let insertions = 0
+    for (let i = 0; insertions < 11; i++) {
+	if (numbers.includes(i)) continue
+	insertions++
+	insertNumbers({number: i, isValid: true})
+    }
+}

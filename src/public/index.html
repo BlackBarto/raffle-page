@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/5a47573fb9.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
@@ -15,8 +16,26 @@
             <li class="header__li"><a href="https://github.com/BlackBarto">Visit my Github</a></li>
         </ul>
     </header>
-
-    <main id="numbers-place" class="numbers"></main>
+    <div class="errors">
+        <h3></h3>
+        <p></p>
+        <button></button>
+    </div>
+    <main class="numbers">
+        <article class="numbers__form-container">
+            <h2 class="numbers__h2">Search your favorite number to register it</h2>
+            <form class="numbers__form">
+                <input type="search" name="search_number" id="searcher-input">
+                <button id="searcher-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button id="searcher-filter"><i class="fa-solid fa-filter"></i></button>
+            </form>
+        </article>
+        <section id="numbers-place" class="numbers__section">
+	    <div class="numbers__no-results">
+		<img src="/imgs/not_found.svg">
+	    </div>
+        </section>
+    </main>
     <script type="module" src="/js/main.js"></script>
 </body>
 </html>

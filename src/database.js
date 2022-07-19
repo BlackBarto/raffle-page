@@ -10,7 +10,7 @@ export const addContestant = ({name, email, raffleNumber}) => {
 }
 
 export const isValidRaffleNumber = (number) => {
-    Contestant.findOne({ raffleNumber: number})
+    return Contestant.findOne({ raffleNumber: number})
         .then(contestant => {
             if (contestant) return false
             return true
@@ -20,8 +20,9 @@ export const isValidRaffleNumber = (number) => {
         })
 }
 
-export const getAllContestant = () => {
-    return Contestant.find()
+
+export const getAllContestants = async () => {
+    return await Contestant.find()
 }
 
 console.log("Database is connected")
