@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { isValidRaffleNumber, getAllContestants } from "../database.js";
-import { validNumer } from "../validations/validations.js";
+import { validNumer } from "../helpers/helpers.js";
 const routes = Router()
 
 routes.get("/api/getAllNumbers", async (req, res) => {
