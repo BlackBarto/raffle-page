@@ -30,9 +30,14 @@
                 <button id="searcher-filter"><i class="fa-solid fa-filter"></i></button>
             </form>
         </article>
-        <section id="numbers-place" class="numbers__section">
-	    <div class="numbers__no-results">
+        <section class="numbers__section">
+	    <article class="numbers__no-results">
 		<img src="/imgs/not_found.svg">
+	    </article>
+	    <div id="numbers-place"></div>
+	    <div class="numbers__loading--scroll">
+	        <div class="numbers__loader--scroll"></div>
+	        <p class="numbers__loader--message">Loading...</p>
 	    </div>
         </section>
     </main>
