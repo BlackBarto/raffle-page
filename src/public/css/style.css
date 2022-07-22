@@ -318,6 +318,10 @@ body {
     height: 40vh;
 }
 
+.numbers__loading--scroll.no-visible {
+    display: none;
+}
+
 .numbers__loader--scroll {
     height: 32vh;
     width: 32vh;
