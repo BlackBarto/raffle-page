@@ -2,15 +2,21 @@ import mongoose from "mongoose"
 import { MONGO_URI } from "./config.js"
 import Contestant from "./models/models.js"
 
-mongoose.connect(MONGO_URI)
+export const client = await mongoose.connect(MONGO_URI).then(m => m.connection.getClient())
 
-export const addContestant = ({name, email, raffleNumber}) => {
-    const contestant = new Contestant({name, email, raffleNumber})
-    return contestant.save()
+export const addContestant = async ({name, email, raffleNumber}) => {
+    const oldContestand = await Contestant.findOne({raffleNumber: raffleNumber}).exec()
+    if (oldContestand) {
+	return {ok: false, error: "Currently there is a contestant with that raffle number, try again with another number"}
+    } else {
+        const contestant = new Contestant({name, email, raffleNumber})
+        await contestant.save().catch(err => console.log({name: "addContestant, on save contestant", err}))
+	return {ok: true, error: null}
+    }
 }
 
-export const isValidRaffleNumber = (number) => {
-    return Contestant.findOne({ raffleNumber: number})
+export const isValidRaffleNumber = number => {
+    return Contestant.findOne({ raffleNumber: parseInt(number)})
         .then(contestant => {
             if (contestant) return false
             return true
@@ -20,9 +26,13 @@ export const isValidRaffleNumber = (number) => {
         })
 }
 
+export const findContestant = async (raffleNumber) => {
+    const contestant = Contestant.findOne({raffleNumber: raffleNumber})
+}
 
 export const getAllContestants = async () => {
-    return await Contestant.find()
+    const contestants = await Contestant.find().exec()
+    return contestants
 }
 
 console.log("Database is connected")

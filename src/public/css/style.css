@@ -1,26 +1,4 @@
-:root {
-    --main-color: rgb(255, 168, 55);
-    --second-color: rgba(255, 187, 98, 0.5);
-    --three-color: rgba(255, 187, 98, 0.2);
-    --alpha-grey: rgba(252,252,252, .7);
-    --light-grey: rgb(251,251,251);
-    --middle-grey: rgb(248,248,248);
-    --dark-grey: rgb(240,240,240);
-    --green: rgb(7, 245, 31);
-    --middle-green: rgb(52, 207, 93);
-    --dark-green: rgb(30, 158, 51);
-    --red: rgb(227, 33, 11);
-}
-
-
-@font-face {
-    font-family: 'Inter';
-    src: url(/fonts/Inter-VariableFont_slnt,wght.ttf);
-}
-
-* {
-    font-family: 'Inter', sans-serif;
-}
+@import url("/css/vars_and_fonts.css") screen;
 
 html {
     font-size: 13px;
@@ -282,6 +260,47 @@ body {
     transition: color .25s linear;
 }
 
+.numbers__number:not(.not-available) .numbers__btn::before {
+    content: "";
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background-color: var(--middle-grey);
+    transition: opacity .1s linear, background-color .1s linear;
+}
+
+.numbers__number:not(.not-available) .numbers__btn::after {
+    content: "";
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto; 
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    opacity: 0;
+    border: 3px solid var(--dark-grey);
+    border-top-color: #000;
+    transition: opacity .1s linear;
+}
+
+.numbers__number:not(.not-available) .numbers__btn.active::after, .numbers__number:not(.not-available) .numbers__btn.active::before {
+    opacity: 1;
+}
+
+.numbers__number:not(.not-available) .numbers__btn.active::after {
+    animation: loading 1s linear infinite;
+}
+
 .numbers__number.not-available .numbers__btn {
     cursor: not-allowed;
 }
@@ -297,7 +316,7 @@ body {
 
 */
 
-.numbers__no-results, .numbers__loading, .numbers__loader--scroll {
+.numbers__no-results, .numbers__loading, .numbers__loader {
     position: absolute;
     top: 0;
     left: 0;
@@ -310,7 +329,7 @@ body {
     display: none;
 }
 
-.numbers__loading--scroll {
+.numbers__loading {
     position: relative;
     display: flex;
     align-items: center;
@@ -318,11 +337,11 @@ body {
     height: 40vh;
 }
 
-.numbers__loading--scroll.no-visible {
+.numbers__loading.no-visible {
     display: none;
 }
 
-.numbers__loader--scroll {
+.numbers__loader {
     height: 32vh;
     width: 32vh;
     border-radius: 50%;
@@ -338,23 +357,23 @@ body {
 
 @keyframes loading {
     0% {
-	color: var(--middle-grey);
-	transform: rotate(0deg);
+	    color: var(--middle-grey);
+	    transform: rotate(0deg);
     }
 
     100% {
-	color: var(--dark-grey);
-	transform: rotate(360deg);
+	    color: var(--dark-grey);
+	    transform: rotate(360deg);
     }
 }
 
 @keyframes loading-text {
     0% {
-	color: #000;
+	    color: #000;
     }
 
     100% {
-	color: var(--dark-grey);
+	    color: var(--dark-grey);
     }
 }
 
@@ -372,12 +391,12 @@ body {
 @media only screen and (min-width: 400px) {
     
     .numbers__number {
-	padding: 20px;
+	    padding: 20px;
     }
 
     .numbers__number-info {
-	justify-content: flex-start;
-	padding-left: 20px;
+	    justify-content: flex-start;
+	    padding-left: 20px;
     }
 }
 

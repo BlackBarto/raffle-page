@@ -1,5 +1,5 @@
 import { numbersPlace, insertNumbersBySearch, insertNumbers } from "./insert_numbers.js"
-import { searching, search, numbers, isFiltering } from "./main.js"
+import { searchingState } from "./state_control.js"
 
 const numbersSection = document.querySelector(".numbers__section") // This is the sections that contains the numbers and loading
 let prevObserverElement = null // This is the element that will be observed to add new numbers to ui
@@ -7,7 +7,8 @@ export const listOfChilds = numbersPlace.childNodes // This is a live list of ch
 
 const choseFunction = ([{isIntersecting}]) => {
     if (isIntersecting) {
-        if (searching) {
+        const { isSearching, search, numbers, isFiltering } = searchingState
+        if (isSearching) {
             const numbersToShow = listOfChilds.length - 1
             const { lastChild, thereIsSpace } = insertNumbersBySearch({numbers, search, numbersToShow, isFiltering})
 	    enableObserver(lastChild, thereIsSpace)

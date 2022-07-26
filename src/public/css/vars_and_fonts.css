@@ -1,0 +1,23 @@
+:root {
+    --main-color: rgb(255, 168, 55);
+    --second-color: rgba(255, 187, 98, 0.5);
+    --three-color: rgba(255, 187, 98, 0.2);
+    --fourth-color: rgba(255, 187, 98, 0.3);
+    --alpha-grey: rgba(252,252,252, .7);
+    --light-grey: rgb(251,251,251);
+    --middle-grey: rgb(248,248,248);
+    --dark-grey: rgb(240,240,240);
+    --green: rgb(7, 245, 31);
+    --middle-green: rgb(52, 207, 93);
+    --dark-green: rgb(30, 158, 51);
+    --red: rgb(227, 33, 11);
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url(/fonts/Inter-VariableFont_slnt,wght.ttf);
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+}

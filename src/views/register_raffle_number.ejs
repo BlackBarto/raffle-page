@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <script src="https://kit.fontawesome.com/5a47573fb9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__h1">Register a <%= number %> of your raffle number on a Raffle of Year</h1>
+    </header>
+    <main class="main">
+        <section class="main__container-form">
+            <h3 class="main__form-h3">Register your number</h3>
+            <form class="main__form" id="form" action="/registerANumber" method="POST">
+                <label class="main__label" for="name">
+                    Fill with your name
+                </label>
+                <div class="main__container-input"><input type="text" class="main__input" name="name" id="name" required><i class="fa-solid fa-user"></i></div>
+                <label class="main__label" for="email">
+                    Fill with your email
+                </label>
+                <div class="main__container-input"><input type="email" class="main__input" name="email" id="email" required><i class="fa-solid fa-envelope"></i></div>
+                <input type="hidden" name="token" value="<%= token %>">
+                <input type="hidden" name="number" value="<%= number %>">
+                <button type="submit" id="submit-btn" class="main__submit">Register</button>
+            </form>
+        </section>
+    </main>
+    <script src="/js/register/register.js"></script>
+</body>
+</html>
