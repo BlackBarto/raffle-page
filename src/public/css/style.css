@@ -73,7 +73,7 @@ body {
 
 /* 
 
-    INICIO DEL NUMBERS (MAIN)
+    INICIO DEL ERROES (MAIN)
 
 */
 
@@ -89,7 +89,7 @@ body {
 
 /* 
 
-    INICIO DEL NUMBERS (MAIN)
+    INICIO DEL FORMULARIO DE LOS NUMEROS (MAIN)
 
 */
 
@@ -148,6 +148,8 @@ body {
 }
 
 .numbers__form button {
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
     padding: 7px 2vw;
     color: #000;
@@ -159,6 +161,36 @@ body {
     background-color: var(--three-color);
     color: var(--main-color);
 }
+
+.numbers__form button span {
+    display: block;
+    position: absolute;
+    right: 0;
+    padding: 10px 15px;
+    width: 200px;
+    opacity: 0;
+    color: #000;
+    transform: translate(70px, -10px);
+    background-color: var(--middle-grey);
+    transition: transform .3s ease-in-out .3s, opacity .2s linear .3s;
+}
+
+.numbers__form button:hover span {
+    opacity: 1;
+    transform: translate(70px, -100px)
+}
+
+
+
+
+
+/*
+
+	INICIO DE LA SECCION DE LOS NUMEROS
+
+*/
+
+
 
 .numbers__section {
     flex-grow: 1;
