@@ -28,7 +28,11 @@ app.use(session({
     secret: SECRET_WORD,
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    store: MongoStore.create({
+        client,
+        collectionName: "sessions"
+    })
 }))
 app.use(flash())
 
