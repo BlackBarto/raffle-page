@@ -13,16 +13,13 @@ routes.post("/api/chooseANumber", isSameDomain, async (req, res) => {
     const numberToChoose = req.body.number
 
     const { errors, isValidNumber } = validNumer(numberToChoose)
-    console.log({name: "numero invalido", errors, isValidNumber, numberToChoose})
     if (!isValidNumber) return res.json({ok: false, errors, url: ""})
 
     const isValid = await isValidRaffleNumber(parseInt(numberToChoose))
-    console.log({name: "numero escogido", isValid, numberToChoose})
     if (!isValid) return res.json({ok: false, errors: ["This number is alredy choosen by another contestant, try again with another number"], url: ""})
 
     const numberToRegister = parseInt(numberToChoose)
     req.session.number = numberToRegister
-    console.log({numberToRegister, session: req.session})
     res.json({ok: true, errors: [], url: "/registerANumber"})
 })
 

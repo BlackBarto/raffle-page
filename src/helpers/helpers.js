@@ -1,6 +1,6 @@
 export const isSameDomain = (req, res, next) => {
-    if (req.get("origin") === "http://localhost:4000" || req.get("origin") === "http://192.168.1.117:4000") next()
-    else res.send("ERES UN HACKER")
+    if (req.get("origin") === "https://raffle-page-develoment.up.railway.app/") next()
+    else res.json({message: "your aren't allowed to do this from this origin"})
 }
 
 export const validNumer = num => {
