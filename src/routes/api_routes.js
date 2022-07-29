@@ -20,7 +20,7 @@ routes.post("/api/chooseANumber", isSameDomain, async (req, res) => {
 
     const numberToRegister = parseInt(numberToChoose)
     req.session.number = numberToRegister
-    console.log({numberToRegister, req.session})
+    console.log({numberToRegister, session: req.session})
     res.json({ok: true, errors: [], url: "/registerANumber"})
 })
 
