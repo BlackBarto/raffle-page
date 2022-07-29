@@ -1,5 +1,3 @@
-@import url("/css/vars_and_fonts.css") screen;
-
 html {
     font-size: 13px;
 }
@@ -73,13 +71,73 @@ body {
 
 /* 
 
-    INICIO DEL ERROES (MAIN)
+    INICIO DE LOS MENSAJES (MAIN)
 
 */
 
-.errors {
-    display: none;
+.messages {
+    position: absolute;
+    z-index: 100000;
+    top: 5vh;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: .97;
+    width: 90%;
+    margin: auto;
 }
+
+.messages__error, .messages__message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateX(-20px);
+    border: 3px solid transparent;
+    background-color: var(--middle-grey);
+    transition: transform .3s linear, opacity .3s linear;
+}
+
+.messages__error.active, .messages__message.active {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.messages__error {
+    border-color: var(--red);
+}
+
+.messages__message { 
+    border-color: var(--middle-green);
+}
+
+.messages__h3 {
+    min-width: 150px;
+}
+
+.messages__btn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.messages__btn i  {
+    cursor: pointer;
+    color: var(--red);
+    font-size: 1.8rem;
+    opacity: .3;
+    transition: opacity .3s linear;
+}
+
+.messages__btn:hover i {
+    opacity: 1;
+}
+
 
 
 
@@ -149,7 +207,6 @@ body {
 
 .numbers__form button {
     position: relative;
-    overflow: hidden;
     cursor: pointer;
     padding: 7px 2vw;
     color: #000;
@@ -162,22 +219,13 @@ body {
     color: var(--main-color);
 }
 
-.numbers__form button span {
-    display: block;
-    position: absolute;
-    right: 0;
-    padding: 10px 15px;
-    width: 200px;
-    opacity: 0;
-    color: #000;
-    transform: translate(70px, -10px);
-    background-color: var(--middle-grey);
-    transition: transform .3s ease-in-out .3s, opacity .2s linear .3s;
+.numbers__form button.filtering {
+    background-color: var(--light-red);
+    color: var(--red);
 }
 
-.numbers__form button:hover span {
-    opacity: 1;
-    transform: translate(70px, -100px)
+.numbers__form button i.no-visible {
+    display: none;
 }
 
 

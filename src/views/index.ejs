@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/vars_and_fonts.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/5a47573fb9.js" crossorigin="anonymous"></script>
 </head>
@@ -16,18 +17,21 @@
             <li class="header__li"><a href="https://github.com/BlackBarto">Visit my Github</a></li>
         </ul>
     </header>
-    <div class="errors">
-        <h3></h3>
-        <p></p>
-        <button></button>
-    </div>
+    <section class="messages" id="messages">
+        <% messages.forEach( message => { %>
+            <article class="messages__<%= message.class %>">
+                <h3 class="messages__h3"><%= message.text %></h3>
+                <button class="messages__btn"><i data-type="close-message" class="fa-solid fa-circle-xmark"></i></button>
+            </article>
+        <% }) %>
+    </section>
     <main class="numbers">
         <article class="numbers__form-container">
             <h2 class="numbers__h2">Search your favorite number to register it</h2>
             <form class="numbers__form">
                 <input type="search" name="search_number" id="searcher-input">
-                <button id="searcher-btn"><i class="fa-solid fa-magnifying-glass"></i><span>Search a number</span></button>
-                <button id="searcher-filter"><i class="fa-solid fa-filter"></i><span>Show only numbers that are available</span></button>
+                <button id="searcher-btn" title="Search a number"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button id="searcher-filter" title="Show available numbers"><i class="fa-solid fa-filter"></i><i class="fa-solid fa-filter-circle-xmark no-visible"></i></button>
             </form>
         </article>
         <section class="numbers__section">

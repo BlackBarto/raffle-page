@@ -12,7 +12,7 @@ const createNumbers = ({number, isValid}) => {
         <p class="numbers__p"><span>State: </span>${stateOfNumber}</p>
     </div>
     <div class="numbers__container-btn">
-        <button data-number="${number}" data-state="${stateOfNumber}" name="btn-choose-number" class="numbers__btn">Apartar</button>
+        <button data-number="${number}" data-state="${stateOfNumber}" name="btn-choose-number" class="numbers__btn">Reserve</button>
     </div>
     `
 
@@ -21,34 +21,36 @@ const createNumbers = ({number, isValid}) => {
 
 export const insertNumbersBySearch = ({numbers, search, numbersToShow, isFiltering}) => {
     const numbersFragment = new DocumentFragment()
-    let thereIsSpace = true
+    let insertions = 0
+    let currentNumber = 0
 
     if (!numbersToShow) {
 	    if (!isFiltering || !numbers.includes(parseInt(search))) {
 	        const number = createNumbers({number: search, isValid: !numbers.includes(parseInt(search))})
 	        numbersFragment.appendChild(number)
+                insertions++
 	    }
     }
 
-    for (let i = numbersToShow; i < numbersToShow + 9; i++) {
+    for (let i = numbersToShow; insertions < 10; i++) {
 	    let num = ""
 	    if (i >= 10) {
 	        num = i >= 20 ? "" + (i - 10) : "0" + (i - 10)
 	    } else num = "" + i
+
 	    const numberToCreate = parseInt(search + num)
+	    if (numberToCreate > 200) break
 
 	    if (isFiltering && numbers.includes(numberToCreate)) continue
 
-	    if (numberToCreate > 200) {
-	        thereIsSpace = false
-	        break
-	    }
 	    const numberElement = createNumbers({number: numberToCreate, isValid: !numbers.includes(numberToCreate)})
 	    numbersFragment.appendChild(numberElement)
+            insertions++
+            currentNumber = i
     }
 
     numbersPlace.appendChild(numbersFragment)
-    return {lastChild: numbersPlace.lastChild, thereIsSpace}
+    return {lastChild: numbersPlace.lastChild, thereIsSpace: insertions >= 10, currentNumber}
 }
 
 
@@ -58,21 +60,23 @@ export const insertNumbersBySearch = ({numbers, search, numbersToShow, isFilteri
 */
 export const insertNumbers = ({numbers, numbersToShow, isFiltering}) => {
     const numbersFragment = new DocumentFragment()
-    let thereIsSpace = true
+    let insertions = 0
+    let currentNumber = 0
 
     // This for generate 10 more numbers while "i" being less or equal than "numbersToShow + 10" and 200 (200 is the higger number on this raffle)
-    for (let i = numbersToShow + 1; i <= numbersToShow + 10; i++) {
-	    if (isFiltering && numbers.includes(i)) continue
-
+    for (let i = numbersToShow + 1; insertions < 10; i++) {
 	    if (i > 200) {
-	        thereIsSpace = false
 	        break
 	    }
 
+	    if (isFiltering && numbers.includes(i)) continue
+
 	    const number = createNumbers({number: i, isValid: !numbers.includes(i)})
 	    numbersFragment.appendChild(number)
+            currentNumber = i
+            insertions++
     }
 
     numbersPlace.appendChild(numbersFragment)
-    return { lastChild: numbersPlace.lastChild, thereIsSpace }
+    return { lastChild: numbersPlace.lastChild, thereIsSpace: insertions === 10, currentNumber}
 }
