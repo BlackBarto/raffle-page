@@ -1,5 +1,5 @@
 export const isSameDomain = (req, res, next) => {
-    if (req.get("origin") === "https://raffle-page-develoment.up.railway.app") next()
+    if (req.get("origin") === "https://raffle-of-year.up.railway.app") next()
     else res.json({message: "your aren't allowed to do this from this origin"})
 }
 
